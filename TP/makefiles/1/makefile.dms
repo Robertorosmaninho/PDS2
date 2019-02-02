@@ -1,0 +1,21 @@
+CC	:=	g++
+SRCDIR := src
+BULDDIR := build
+TARGET := main
+CFLAGS := -g -Wall -O3 -std=c++11 -I include/
+
+all: main
+
+class1:
+		@mkdir build/class1/
+		$(CC) $(CFLAGS) -c src/class1/class1.cpp -o build/class1/class1.o
+
+class2:
+		@mkdir build/class2/
+		$(CC) $(CFLAGS) -c src/class2/class2.cpp -o build/class2/class2.o
+
+main: class1 class2
+		$(CC) $(CFLAGS) -c build/class1/class1.o build/class2/class2.o src/main.cpp -o main
+
+clean:
+		$(RM) -r $(BUILDDIR)/* $(TARGET)
